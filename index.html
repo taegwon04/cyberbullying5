@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사이버 폭력 대처 방안</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f7f7;
+        }
+        .page {
+            display: none;
+            max-width: 750px;
+            width: 90%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            text-align: center;
+        }
+        .page.active {
+            display: block;
+        }
+        h2 {
+            font-size: 28px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .content-box {
+            background-color: #ADD8E6;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.6;
+            margin: 20px 0;
+            text-align: left;
+        }
+        ul {
+            margin: 15px 0;
+            padding-left: 20px;
+            list-style-type: square;
+        }
+        ul li {
+            margin: 10px 0;
+        }
+        img {
+            width: 40%;
+            max-width: 200px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .chat-simulation {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            background-color: #E3F2FD;
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 650px;
+            overflow-y: auto;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .chat-message {
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 70%;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .chat-message.user {
+            align-self: flex-end;
+            background-color: white;
+            text-align: right;
+        }
+        .chat-message.user::before {
+            content: "나";
+            position: absolute;
+            top: -25px;
+            right: 0;
+            font-size: 12px;
+            color: #555;
+        }
+        .chat-message.other {
+            align-self: flex-start;
+            background-color: yellow;
+            text-align: left;
+        }
+        .chat-message.other::before {
+            content: attr(data-sender);
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 12px;
+            color: #555;
+        }
+        .divider {
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        .chatbot-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .chatbot-option {
+            padding: 15px;
+            background-color: #ADD8E6;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .chatbot-option:hover {
+            background-color: #87CEEB;
+        }
+        .chatbot-feedback {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .chatbot-feedback.success {
+            color: green;
+        }
+        .chatbot-feedback.error {
+            color: red;
+        }
+        .instagram-post {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .instagram-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .username {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .instagram-image {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            border-bottom: 1px solid #ddd;
+        }
+        .instagram-caption {
+            padding: 10px;
+            color: #555;
+        }
+    </style>
+</head>
+
+</head>
+<body>
+    <!-- 첫 페이지 -->
+    <div id="page0" class="page active">
+        <img src="char.png" alt="디지털 윤리 지킴이">
+        <h2>Ⅴ. 사이버 폭력 대처 방안</h2>
+        <p>사이버 폭력을 경험했을 때 올바르게 대처하는 방법을 배워봅시다!<br><br>
+            관련 퀴즈가 3개나 있으니 꼼꼼히 읽어보세요 :)</p>
+        <button onclick="nextPage(1)">다음</button>
+    </div>
+
+    <!-- 두 번째 페이지: 대처 방안 -->
+    <div id="page1" class="page">
+        <h2>사이버 폭력 대처 방법 5가지 </h2>
+        <div class="content-box">
+            <ul>
+                <li><strong>1. 분명한 거부 의사 표현하기:</strong> 가해자에게 싫다는 의사를 분명히 전합니다.</li>
+                <li><strong>2. 보복하지 않기:</strong> 같은 방식으로 대응하지 않습니다.</li>
+                <li><strong>3. 증거자료 확보하기:</strong> 캡처 등으로 증거를 남깁니다.</li>
+                <li><strong>4. 담임선생님 또는 부모님께 말씀드리기:</strong> 신뢰할 수 있는 어른에게 알립니다.</li>
+                <li><strong>5. 경찰에 신고하기:</strong> 심각한 경우 법적인 도움을 요청합니다.</li>
+            </ul>
+        </div>
+        <button onclick="nextPage(2)">다음</button>
+    </div>
+
+    <!-- 세 번째 페이지: 시뮬레이션 문제 1 -->
+    <div id="page2" class="page">
+        <h2>사이버 폭력 대처 방안 - 퀴즈 1</h2>
+        <div class="chat-simulation">
+            <div class="chat-message other" data-sender="학생 B">너 정말 못생겼다. 다들 그렇게 생각할걸? 🤣</div>
+            <div class="chat-message other" data-sender="학생 C">어휴 왜 그렇게 사냐. 넌 그냥 나가라~ 🤪</div>
+            <div class="chat-message user">제발 이런 말 그만해.</div>
+        </div>
+        <div class="divider"></div>
+        <p>가해자에게 모욕적인 메시지를 받았어요. 다음에 무엇을 해야 할까요?</p>
+        <div class="chatbot-options">
+            <button class="chatbot-option" onclick="checkAnswer(1)">캡처해서 증거를 남겨요.</button>
+            <button class="chatbot-option" onclick="checkAnswer(2)">똑같이 욕을 보내요.</button>
+            <button class="chatbot-option" onclick="checkAnswer(3)">그냥 무시해요.</button>
+        </div>
+        <p id="feedback1" class="chatbot-feedback"></p>
+    </div>
+
+    <!-- 네 번째 페이지: 시뮬레이션 문제 2 -->
+    <div id="page3" class="page">
+        <h2>사이버 폭력 대처 방안 - 퀴즈 2</h2>
+        <div class="chat-simulation">
+            <div class="chat-message other" data-sender="학생 B">너 이 사진 봤어? 완전 웃기지 않아? 🤣</div>
+            <div class="chat-message user">다른 친구 사진을 막 퍼뜨려도 돼?</div>
+            <div class="chat-message other" data-sender="학생 C">다들 재밌어하니까 문제 없지 뭐~</div>
+        </div>
+        <div class="divider"></div>
+        <p>다른 친구의 사생활이 담긴 사진이 온라인에서 퍼지고 있습니다. 다음에 무엇을 해야 할까요?</p>
+        <div class="chatbot-options">
+            <button class="chatbot-option" onclick="checkAnswer2(1)">사진을 더 퍼뜨려요.</button>
+            <button class="chatbot-option" onclick="checkAnswer2(2)">아무 말도 하지 않아요.</button>
+            <button class="chatbot-option" onclick="checkAnswer2(3)">문제를 알리고 도움을 요청해요.</button>
+        </div>
+        <p id="feedback2" class="chatbot-feedback"></p>
+    </div>
+
+    <!-- 다섯 번째 페이지: 인스타그램 스타일 문제 -->
+    <div id="page4" class="page">
+        <h2>사이버 폭력 대처 방안 - 퀴즈 3</h2>
+        <div class="instagram-post">
+            <div class="instagram-header">
+                <img src="13.png" alt="프로필 사진" class="profile-pic">
+                <span class="username">funny_buddy</span>
+            </div>
+            <img src="14.png" alt="게시물 이미지" class="instagram-image">
+            <div class="instagram-caption">
+                <strong>funny_buddy:</strong> 친구 A의 이 표정 ㅋㅋㅋ. 이런 거 올려도 되겠지? 🤣
+            </div>
+            <div class="post-comments">
+                <div class="comment">
+                    <strong>laugh_master:</strong> 와 진짜 웃기다 ㅋㅋㅋㅋ
+                </div>
+                <div class="comment">
+                    <strong>student_a:</strong> 제발 내 사진 지워줘... 너무 창피해.
+                </div>
+            </div>
+        </div>
+        <p>다른 사람이 내 허락 없이 사진을 공유했습니다. 다음에 무엇을 해야 할까요?</p>
+        <div class="chatbot-options">
+            <button class="chatbot-option" onclick="checkAnswer3(1)">게시물을 올린 친구의 이상한 사진을 올리며 보복해요.</button>
+            <button class="chatbot-option" onclick="checkAnswer3(2)">삭제 요청을 하고 해결되지 않는다면 문제를 알려요.</button>
+            <button class="chatbot-option" onclick="checkAnswer3(3)">아무 말도 하지 않고 넘어가요.</button>
+        </div>
+        <p id="feedback3" class="chatbot-feedback"></p>
+    </div>
+
+    <script>
+        function checkAnswer3(selected) {
+            const feedbackEl = document.getElementById("feedback3");
+
+            if (selected === 2) {
+                feedbackEl.innerHTML = "정답입니다! 문제를 알리고 삭제 요청을 하는 것이 올바른 대처 방법입니다. <br> 과학실의 비밀번호는 '5218'입니다!";
+                feedbackEl.classList.remove("error");
+                feedbackEl.classList.add("success");
+            } else {
+                feedbackEl.textContent = "오답입니다. 다시 시도해보세요.";
+                feedbackEl.classList.remove("success");
+                feedbackEl.classList.add("error");
+            }
+        }
+    </script>
+
+
+    <script>
+        function nextPage(pageNumber) {
+            document.querySelector(".page.active").classList.remove("active");
+            document.getElementById(`page${pageNumber}`).classList.add("active");
+        }
+
+        function checkAnswer(selected) {
+            const feedbackEl = document.getElementById("feedback1");
+
+            if (selected === 1) {
+                feedbackEl.textContent = "정답! 증거를 남기는 것은 중요한 첫 단계입니다. 다음 문제로 넘어갑니다.";
+                feedbackEl.classList.remove("error");
+                feedbackEl.classList.add("success");
+                setTimeout(() => nextPage(3), 2000);
+            } else {
+                feedbackEl.textContent = "오답입니다. 다시 시도해보세요.";
+                feedbackEl.classList.remove("success");
+                feedbackEl.classList.add("error");
+            }
+        }
+
+        function checkAnswer2(selected) {
+            const feedbackEl = document.getElementById("feedback2");
+
+            if (selected === 3) {
+                feedbackEl.innerHTML = "정답입니다! 문제를 알리고 도움을 요청하는 것은 사생활 보호를 위한 첫걸음입니다.<br> 다음 문제로 넘어갑니다.";
+                feedbackEl.classList.remove("error");
+                feedbackEl.classList.add("success");
+                setTimeout(() => nextPage(4), 2000);
+            } else {
+                feedbackEl.textContent = "오답입니다. 다시 시도해보세요.";
+                feedbackEl.classList.remove("success");
+                feedbackEl.classList.add("error");
+            }
+        }
+    </script>
+</body>
+</html>
